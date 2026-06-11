@@ -1,3 +1,6 @@
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = window.matchMedia("(pointer: fine)").matches;
+
 // ── Sticky nav state ──
 const nav = document.getElementById("nav");
 const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
@@ -30,7 +33,6 @@ window.addEventListener(
 );
 
 // ── Reveal on scroll ──
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealEls = document.querySelectorAll(".reveal");
 if (reduceMotion) {
   revealEls.forEach((el) => el.classList.add("in"));
@@ -92,6 +94,67 @@ const activeIO = new IntersectionObserver(
   { rootMargin: "-40% 0px -55% 0px" }
 );
 sections.forEach((s) => activeIO.observe(s));
+
+// ── Spotlight: cursor-following glow on cards ──
+if (finePointer && !reduceMotion) {
+  document.querySelectorAll(".spotlight").forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    });
+  });
+}
+
+// ── Subtle 3D tilt on work cards ──
+if (finePointer && !reduceMotion) {
+  document.querySelectorAll(".tilt").forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform =
+        `translateY(-6px) perspective(900px) rotateX(${py * -3}deg) rotateY(${px * 3}deg)`;
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
+  });
+}
+
+// ── Magnetic buttons ──
+if (finePointer && !reduceMotion) {
+  document.querySelectorAll(".magnetic").forEach((btn) => {
+    btn.addEventListener("pointermove", (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.3}px)`;
+    });
+    btn.addEventListener("pointerleave", () => {
+      btn.style.transform = "";
+    });
+  });
+}
+
+// ── Copy email ──
+const copyBtn = document.getElementById("copyEmail");
+if (copyBtn) {
+  const label = copyBtn.textContent;
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(copyBtn.dataset.email);
+      copyBtn.textContent = "Copied ✓";
+      copyBtn.classList.add("copied");
+      setTimeout(() => {
+        copyBtn.textContent = label;
+        copyBtn.classList.remove("copied");
+      }, 2000);
+    } catch {
+      window.location.href = `mailto:${copyBtn.dataset.email}`;
+    }
+  });
+}
 
 // ── Footer year ──
 document.getElementById("year").textContent = new Date().getFullYear();
