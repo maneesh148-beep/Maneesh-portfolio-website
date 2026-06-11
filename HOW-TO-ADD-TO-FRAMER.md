@@ -155,13 +155,11 @@ reduced-motion preferences.
 - Or download `maneesh-portfolio-standalone.html` and double-click it — it's
   fully self-contained.
 
-## What to replace before going live
+## Remaining placeholders
 
-The content is now real (Target / Meesho / BlackBuck / PayU / Ola, actual case
-studies). Only a few things remain:
+Photo, hero thumbnails (Video Reviews, Pricing, Catalog, Sourcing) and the
+Figma case-study links are all real now. Still pending:
 
-- [ ] Case-study card links (`href="#"`) → link each card to its case-study page
-      on your Framer site
-- [ ] CSS mock thumbnails → your real project screenshots (the ones already on
-      your Framer case-study cards)
-- [ ] Portrait placeholder "MJ" → your photo
+- [ ] Sourcing Tool, Crystal Design System and LazyPay card links (`href="#"`)
+- [ ] Real thumbnails for the Crystal Design System and LazyPay cards
+- [ ] Final resume PDF without [X] placeholder metrics
