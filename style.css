@@ -374,6 +374,12 @@ img { max-width: 100%; display: block; }
   transition: transform 0.5s var(--ease);
 }
 .work-card:hover .thumb-img { transform: translateY(0); }
+/* Frameless variant for transparent PNGs (floating devices etc.) */
+.thumb-img--free {
+  object-fit: contain; object-position: center bottom;
+  border: none; border-radius: 0; box-shadow: none;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.35));
+}
 .mock-landing {
   flex-direction: column; align-items: center; justify-content: center; gap: 12px;
   text-align: center;
