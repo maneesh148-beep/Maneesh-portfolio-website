@@ -185,7 +185,7 @@ img { max-width: 100%; display: block; }
 .line-mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
 .line { display: inline-block; }
 .hero-title em {
-  font-style: normal; white-space: nowrap;
+  font-style: normal;
   background: linear-gradient(100deg, var(--accent) 20%, #7df2ce 80%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
