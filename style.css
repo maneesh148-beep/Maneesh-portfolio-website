@@ -299,14 +299,25 @@ img { max-width: 100%; display: block; }
 .work-featured { grid-column: 1 / -1; }
 .work-featured .work-thumb { aspect-ratio: 21 / 9; }
 .work-thumb {
+  position: relative;
   aspect-ratio: 16 / 10;
   display: grid; place-items: center;
   overflow: hidden; padding: clamp(20px, 4vw, 44px) clamp(20px, 5vw, 56px) 0;
 }
-.thumb-a { background: linear-gradient(135deg, #23254d, #6e5aff); }
-.thumb-b { background: linear-gradient(135deg, #143a2b, #2dd4a0); }
-.thumb-c { background: linear-gradient(135deg, #4a2050, #e85aa0); }
+.thumb-a { background: linear-gradient(135deg, #3a2356, #8b4d9e); }
+.thumb-b { background: linear-gradient(135deg, #14403a, #2d7d6e); }
+.thumb-c { background: linear-gradient(135deg, #1f3a5c, #4d7fb8); }
 .thumb-d { background: linear-gradient(135deg, #4a3415, #f2b53d); }
+.thumb-e { background: linear-gradient(135deg, #4a2050, #e85aa0); }
+
+.work-flag {
+  position: absolute; top: 18px; left: 20px; z-index: 3;
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+  color: var(--accent); background: rgba(10, 10, 14, 0.6);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 242, 78, 0.35); border-radius: 999px;
+  padding: 6px 14px;
+}
 
 /* CSS-drawn UI mockups inside thumbnails */
 .mock-browser {

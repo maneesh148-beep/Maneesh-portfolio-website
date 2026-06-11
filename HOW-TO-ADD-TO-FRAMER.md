@@ -157,9 +157,11 @@ reduced-motion preferences.
 
 ## What to replace before going live
 
-- [ ] 4 project cards → real projects, real screenshots, real links
-- [ ] Experience roles → real companies and dates
-- [ ] Testimonials → real quotes (or delete the section)
-- [ ] Social links (`#` placeholders) → your real profiles
-- [ ] Stats (4 years / 20 projects / 12 clients) → your real numbers
+The content is now real (Target / Meesho / BlackBuck / PayU / Ola, actual case
+studies). Only a few things remain:
+
+- [ ] Case-study card links (`href="#"`) → link each card to its case-study page
+      on your Framer site
+- [ ] CSS mock thumbnails → your real project screenshots (the ones already on
+      your Framer case-study cards)
 - [ ] Portrait placeholder "MJ" → your photo
