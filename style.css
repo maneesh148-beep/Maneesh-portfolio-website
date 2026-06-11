@@ -311,6 +311,7 @@ img { max-width: 100%; display: block; }
 .thumb-d { background: linear-gradient(135deg, #4a3415, #f2b53d); }
 .thumb-e { background: linear-gradient(135deg, #4a2050, #e85aa0); }
 .thumb-f { background: linear-gradient(135deg, #b98875, #161031 70%); }
+.thumb-g { background: linear-gradient(135deg, #451418, #1a1a1c 65%); }
 
 /* Two side-by-side phones in the featured Video Reviews card */
 .mock-phones-duo {
