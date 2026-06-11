@@ -1,167 +1,130 @@
 # How to bring this design into Framer
 
-Two files matter here:
+This build matches your existing site's visual identity (deep plum + grain,
+gold headlines, pink "Hey! 👋" badge, big rounded case cards) with your real
+content from the site and CV — then layers on polish: scroll reveals, sticky
+blur nav, scroll progress bar, awards marquee, copy-email button, SEO schema.
 
 | File | What it's for |
 |---|---|
-| `index.html` + `style.css` + `script.js` | The full upgraded site (development version) |
-| `maneesh-portfolio-standalone.html` | Everything in ONE file — open it in a browser, share it, or paste it into a Framer Embed |
-
-There are two ways to get this into Framer. **Option A** takes 5 minutes but isn't
-editable as Framer layers. **Option B** rebuilds it natively so you can edit
-everything visually later — this is the recommended path for a portfolio you'll
-keep updating.
+| `index.html` + `style.css` + `script.js` | The full site (development version) |
+| `maneesh-portfolio-standalone.html` | Everything in ONE file — open in a browser, share, or paste into a Framer Embed |
 
 ---
 
 ## Option A — Quick embed (5 minutes, not visually editable)
 
-Good for previewing the design inside Framer or shipping it as-is.
+1. In Framer press **Insert (Cmd/Ctrl + I)** → search **"Embed"**.
+2. Drag it onto the canvas → set **Type: HTML**.
+3. Open `maneesh-portfolio-standalone.html`, Select All → Copy → paste into the Embed.
+4. Publish. Edits happen in code, not on the canvas.
 
-1. Open your Framer project → press **Insert (Cmd/Ctrl + I)** → search **"Embed"**.
-2. Drag the Embed component onto the canvas, set **Width: 1fr / Fill** and
-   **Height: Fit content** (or a fixed viewport height).
-3. In the right panel set **Type: HTML**.
-4. Open `maneesh-portfolio-standalone.html` in a text editor, **Select All → Copy**,
-   and paste into the Embed's HTML field.
-5. Publish. Done — but you'll edit by editing the code, not the canvas.
+## Option B — Rebuild natively in Framer (fully editable — recommended)
 
-> Tip: you can also embed just one section (e.g. only the testimonials or the
-> contact CTA) by copying that section's HTML plus the `<style>` block.
+Since this design intentionally mirrors your current Framer site, most of your
+existing project stays. You're **upgrading sections in place**, not starting over.
 
-## Option B — Rebuild natively in Framer (fully editable, recommended)
+### Step 1 — Styles (10 min)
 
-Open `index.html` in your browser side-by-side with Framer and recreate each
-section. Below is the exact recipe with Framer settings.
+**Color Styles** (Assets → Color Styles → +):
+- `bg` `#1E0F2D` · `bg-deep` `#170B24` · `surface` `#2A1640`
+- `gold` `#F2B53D` · `pink` `#CF3D96` · `navy` `#1B1038`
+- `text` `#EFE7FA` · `text-dim` `#C9B8DE`
+- `paper` `#FAF6EF` (white experience cards) · `paper-ink` `#241536`
+- Card fills: purple `#8D4485→#A25899`, teal `#28564C→#336C5F`, blue `#3A648C→#4878A6` (135° gradients)
 
-### Step 1 — Set up styles (10 min)
+**Text Styles** — rounded faces to match your site:
+- `Hero/Title` — Baloo 2 ExtraBold, ~77px desktop / 40px phone, color `gold`
+- `Heading/H2` — Baloo 2 Bold, ~51px / 32px
+- `Card/H3` — Baloo 2 ExtraBold, ~46px / 30px, white
+- `Body` — Quicksand Medium, 17–18px, line-height 1.65
+(If you prefer your current fonts, keep them — only the sizes/weights matter.)
 
-1. **Fonts:** Site Settings → no setup needed; just pick fonts in text styles.
-   Create text styles (Assets panel → Text Styles → +):
-   - `Heading/H1` — Space Grotesk Bold, 84px desktop / 40px phone, letter-spacing −2%, line-height 1.1
-   - `Heading/H2` — Space Grotesk Bold, 48px / 30px, letter-spacing −2%
-   - `Heading/H3` — Space Grotesk SemiBold, 21px
-   - `Body` — Inter Regular, 17px, line-height 1.6
-   - `Eyebrow` — Space Grotesk SemiBold, 14px, letter-spacing 12%, UPPERCASE
-2. **Colors:** Assets panel → Color Styles → add:
-   - `bg` `#0A0A0C` · `bg-alt` `#101014` · `surface` `#16161C`
-   - `text` `#F2F2F0` · `text-dim` `#9B9BA3`
-   - `accent` `#C9F24E` · `border` white at 8% opacity
-3. Set the page background to `bg`.
+**Grain:** your site already has it. If rebuilding: add a Frame over the page,
+fill with a noise PNG at ~9% opacity, blend mode Overlay, ignore events.
 
-### Step 2 — Navigation (15 min)
+### Step 2 — Navigation (10 min)
 
-1. Insert → **Navigation/Navbar** or build a Frame: pin **Fixed** to top,
-   width 1120, padding 10×24, **Radius 999**, horizontal stack, gap 32.
-2. Add logo text "MJ." (color the dot `accent`), 5 links, and a "Let's talk"
-   pill button (`accent` fill, dark text).
-3. Add a **Scroll Variant**: on scroll past 50px, switch to a variant with
-   background `#101014` at 72% + **Backdrop blur 16**, border `border`,
-   and max-width ~880 (this recreates the shrinking glass pill).
-4. Transition: Spring, gentle.
+Fixed top bar: "MJ." logo (gold dot), links — Case Studies / Experience /
+About / Contact — and a "Let's talk" outline pill. Add a **scroll variant**
+past 50px: background `#170B24` at 80% + backdrop blur 14. Add a thin
+gradient progress bar (pink→gold) pinned to the very top if you want the
+extra polish.
 
-### Step 3 — Hero (20 min)
+### Step 3 — Hero (15 min)
 
-1. Section frame: min-height 100vh, vertical stack, left-aligned, padding 150 top.
-2. Availability badge: small pill (border `border`, 8×16 padding) with an 8px
-   `accent` circle + "Available for new projects". Add **Loop animation**
-   (scale pulse) on the dot if you like.
-3. H1: "Designing digital experiences that feel *effortless*." — select the word
-   "effortless" and give it a **gradient text fill** `#C9F24E → #7DF2CE`.
-4. Sub-paragraph (`text-dim`, max-width 560), then two buttons:
-   - Primary: `accent` fill, dark text, radius 999, hover variant: lift −2px +
-     soft `accent` shadow.
-   - Ghost: transparent, `border` stroke, hover: stroke white 30%.
-5. Stats row: three vertical stacks — big number (Space Grotesk 42) + small
-   `text-dim` label. The "+" after numbers: separate `accent` colored span.
-6. **Appear effects** (Effects → Appear → Fade Up): set delays 0 / 0.1 / 0.2 /
-   0.3s down the stack to recreate the stagger.
+Centered vertical stack:
+1. Your photo, 168px circle, with a **dashed circle ring** behind it
+   (stroke white 25%, dashed). Optional: slow Loop rotation on the ring.
+2. Pink "Hey! 👋" pill — fill `pink`, radius 16, **rotate −3°**, soft pink shadow.
+3. "I'm Maneesh Jaiswal" (Baloo 2 SemiBold ~34px).
+4. H1 in `gold`: "Lead UX designer (L6) @Target Corp."
+5. Your two intro paragraphs (second one in `text-dim`).
+6. Two buttons: gold pill "View case studies ↓" + outline "Get in touch".
+7. **Appear effects**: Fade Up, stagger each element ~100ms down the stack.
 
-### Step 4 — Marquee (5 min)
+### Step 4 — Case-study cards (20 min)
 
-Insert → search **"Ticker"** (built-in Framer component). Add your skills as
-text items separated by ✦ glyphs (color the ✦ `accent`). Speed slow,
-**pause on hover ON**, top/bottom border `border`, background `bg-alt`.
+These are your existing three cards, polished:
+- Card frame: radius 28, padding ~64, 2-column grid (copy | screenshot),
+  gradient fills from Step 1 (purple / teal / blue).
+- Gold label ("Most recommended read ✦ 2023"), white H3, white copy.
+- CTA: navy pill, **gold uppercase text** "READ CASE STUDY ›".
+- **Hover variant:** card lifts −6px + bigger shadow; screenshot drifts up
+  ~8px. Transition: Spring, gentle.
+- Keep your real product screenshots — they're the heart of these cards.
+- Below the three, add two `surface` mini-cards for **Crystal Design System**
+  and **LazyPay BNPL** (from the CV) — title, one-liner, subtle border that
+  glows gold on hover.
 
-### Step 5 — Work grid (30 min)
+### Step 5 — Experience (10 min)
 
-1. Grid: 2 columns, gap 28. Make the first card **span 2 columns** (Framer
-   grid → child → Column Span 2).
-2. Card = vertical stack, background `surface`, border `border`, **Radius 20**,
-   clip content ON:
-   - Thumbnail frame (gradient fill, e.g. `#23254D → #6E5AFF` at 135°) — drop
-     a real project screenshot in here; until then a simple mock works.
-   - Meta row: H3 + one-line outcome (`text-dim`) + a 44px circular arrow
-     button (border `border`).
-   - Tag pills row.
-3. **Hover variant:** card lifts −6px, border brightens, arrow circle becomes
-   `accent` fill + rotates −45°, screenshot shifts up ~8px.
-   Transition: Spring, gentle. This is the single highest-impact interaction.
-4. Repeat for 4 projects. Real screenshots > placeholders, always.
+"13+ Years of Diverse Experience / With leading tech startups in India",
+then a 3-column grid of **white (`paper`) cards**: logo, company + domain,
+role + dates, one-paragraph description. This build adds two more cards —
+**PayU / Citrus Pay (2016–18)** and **Ola & Earlier (2012–16)** — so the full
+13 years is visible. Hover: lift −6px + shadow.
 
-### Step 6 — Services (15 min)
+### Step 6 — Awards marquee (5 min)
 
-3-column grid, gap 24. Each card: `surface` bg, radius 20, padding 32/28,
-number glyph ① in `accent`, H3, short paragraph, then a list where each row
-starts with a tiny `accent` ✦. Hover: lift −6px + border tint `accent` 40%.
+Insert → **Ticker** component: your real awards
+(Act Like an Owner — Meesho '22 · Star Team of the Quarter — Meesho '23 ·
+You Rock — PayU '17 · Mile of Service Excellence ×2 — BlackBuck ·
+Academic Excellence — Aptech) separated by gold ✦. Slow speed, pause on hover.
 
-### Step 7 — About (15 min)
+### Step 7 — "Beyond the pixels" (10 min)
 
-2-column grid (0.8fr / 1.2fr). Left: portrait frame 4:5, radius 20 — use your
-photo. Overlap a small glass card (bottom-left, blur 12, border `border`) with
-the pulse dot + "Currently — open to freelance & full-time roles".
-Right: eyebrow, H2, two paragraphs, skill chips (pills, hover: `accent` border).
+3-column grid of `surface` cards from your CV's Leadership & Practice:
+🤝 Team building · 🧩 Design systems & ops · 🤖 AI-augmented practice.
+Hover: border tint `pink`.
 
-### Step 8 — Experience (10 min)
+### Step 8 — Contact + footer (10 min)
 
-Vertical stack with a 1px left border. Each row: grid 160px + 1fr; absolute
-9px `accent` dot on the line (give it an outer glow: shadow `accent` 15%,
-blur 0, spread 5).
+Centered: small pink "Say hi 👋" pill, gold H2 "Let's build something great
+together.", then your email as a **gold pill button** (`mailto:`) + outline
+"Copy email" beside it. Social text links: LinkedIn / Behance / Dribbble.
+Footer: © line + "Back to top ↑".
 
-### Step 9 — Testimonials (10 min)
+### Step 9 — Motion & publish checklist
 
-3-column grid of `surface` cards: ★★★★★ row in `accent`, quote, then avatar
-circle (initials, `accent` 12% bg) + name + role. Hover: lift −6px.
-
-### Step 10 — Contact + footer (10 min)
-
-Centered section: eyebrow, huge H2 (up to 67px), sub-line, then two buttons —
-your email as a big `accent` pill (`mailto:maneesh148@gmail.com`) and a ghost
-"Copy email" beside it. Social links as plain text with `accent` hover.
-Footer: © line + "Back to top ↑" anchor.
-
-### Step 11 — Appear effects everywhere (10 min)
-
-Select each section's content → **Effects → Appear → Fade Up**
-(Y offset 28, duration 0.7, ease-out, **stagger children 70ms**). Use this ONE
-style everywhere — consistency reads as polish. Framer automatically respects
-reduced-motion preferences.
-
-### Step 12 — Publish checklist
-
-- Site Settings → General: Title "Maneesh Jaiswal — Designer & Developer",
-  description under 155 chars.
-- Upload a 1200×630 social share image (screenshot your own hero!).
-- Add favicon (dark square, lime "MJ").
-- Breakpoints: check Tablet (work grid → 1 col) and Phone (menu, full-width buttons).
-- Run Framer's built-in accessibility checker; one H1 per page.
+- One Appear style everywhere: **Fade Up, 28px, 0.7s, ease-out, stagger 80ms.**
+- Check Tablet/Phone breakpoints: case cards stack (screenshot above text),
+  experience grid → 1 column, full-width buttons.
+- Site Settings: title "Maneesh Jaiswal — Lead UX Designer (L6) @ Target Corp.",
+  description ≤155 chars, social share image 1200×630 (screenshot your hero),
+  favicon (plum square, gold "MJ").
+- One H1 per page; run Framer's accessibility checker.
 
 ---
 
 ## Previewing the HTML version
 
-- **Live preview link (no setup):**
-  `https://raw.githack.com/maneesh148-beep/Maneesh-portfolio-website/claude/practical-fermi-fr3ngu/index.html`
-- Or download `maneesh-portfolio-standalone.html` and double-click it — it's
-  fully self-contained.
+- **Live link:** `https://raw.githack.com/maneesh148-beep/Maneesh-portfolio-website/claude/practical-fermi-fr3ngu/index.html`
+- **Backup:** `https://htmlpreview.github.io/?https://github.com/maneesh148-beep/Maneesh-portfolio-website/blob/claude/practical-fermi-fr3ngu/index.html`
+- Or download `maneesh-portfolio-standalone.html` and double-click it.
 
-## What to replace before going live
+## Remaining placeholders
 
-The content is now real (Target / Meesho / BlackBuck / PayU / Ola, actual case
-studies). Only a few things remain:
-
-- [ ] Case-study card links (`href="#"`) → link each card to its case-study page
-      on your Framer site
-- [ ] CSS mock thumbnails → your real project screenshots (the ones already on
-      your Framer case-study cards)
-- [ ] Portrait placeholder "MJ" → your photo
+- [ ] Hero photo — swap the "MJ" circle for your photo (see the HTML comment in the hero)
+- [ ] Case-study links (`href="#"`) → your Framer case-study page URLs
+- [ ] CSS mockups inside case cards → your real product screenshots
