@@ -31,6 +31,12 @@
     ]
   }
   </script>
+  <script>
+    // Set theme before first paint to avoid a flash
+    document.documentElement.dataset.theme =
+      localStorage.getItem("theme") ||
+      (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  </script>
 </head>
 <body>
 
@@ -51,6 +57,7 @@
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">☀</button>
       <a href="#contact" class="btn btn-small magnetic">Let's talk</a>
       <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span>

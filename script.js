@@ -156,5 +156,22 @@ if (copyBtn) {
   });
 }
 
+// ── Theme toggle (dark / light) ──
+const themeToggle = document.getElementById("themeToggle");
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+const applyThemeUI = () => {
+  const light = document.documentElement.dataset.theme === "light";
+  themeToggle.textContent = light ? "☾" : "☀";
+  themeToggle.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+  if (themeColorMeta) themeColorMeta.content = light ? "#f7f7f8" : "#0a0a0c";
+};
+themeToggle.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+  applyThemeUI();
+});
+applyThemeUI();
+
 // ── Footer year ──
 document.getElementById("year").textContent = new Date().getFullYear();
