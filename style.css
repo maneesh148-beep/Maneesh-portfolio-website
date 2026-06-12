@@ -788,3 +788,22 @@ html[data-theme="light"] .nav-toggle span { background: var(--text); }
   .timeline-item::before { transform: scale(1); transition: none; }
   .work-card:hover .thumb-img, .work-card:hover .thumb-img--free { transform: none; }
 }
+
+/* ── Hero spotlight + particles ── */
+.hero-particles, .hero-spotlight {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+}
+.hero-spotlight {
+  opacity: 0; transition: opacity 0.6s;
+  background: radial-gradient(540px circle at var(--hx, 50%) var(--hy, 40%),
+    rgba(230, 126, 34, 0.13), transparent 65%);
+}
+.hero:hover .hero-spotlight { opacity: 1; }
+.hero > .container, .hero > .scroll-hint { position: relative; z-index: 1; }
+html[data-theme="light"] .hero-spotlight {
+  background: radial-gradient(540px circle at var(--hx, 50%) var(--hy, 40%),
+    rgba(230, 126, 34, 0.16), transparent 65%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-particles, .hero-spotlight { display: none; }
+}
