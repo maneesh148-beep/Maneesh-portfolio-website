@@ -199,51 +199,5 @@ if (stickerLayer && !reduceMotion && finePointer) {
   }, { passive: true });
 }
 
-// ── Click-to-draw pen canvas in hero ──
-const heroDraw = document.getElementById("heroDraw");
-const drawShapes = document.getElementById("drawShapes");
-const heroSection = document.querySelector(".hero");
-if (heroDraw && drawShapes && heroSection) {
-  const NS = "http://www.w3.org/2000/svg";
-  const kinds = ["rect", "frame", "circle"];
-  let pts = [];
-  let poly = null;
-  let kindIdx = 0;
-  const blankTarget = (e) =>
-    e.target === heroSection || e.target.classList.contains("container");
-  heroSection.addEventListener("click", (e) => {
-    if (!blankTarget(e) || e.detail > 1) return;
-    const r = heroSection.getBoundingClientRect();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-    pts.push(`${x},${y}`);
-    if (!poly) {
-      poly = document.createElementNS(NS, "polyline");
-      poly.setAttribute("class", "draw-line");
-      heroDraw.insertBefore(poly, heroDraw.firstChild);
-    }
-    poly.setAttribute("points", pts.join(" "));
-    const a = document.createElementNS(NS, "rect");
-    a.setAttribute("x", x - 5);
-    a.setAttribute("y", y - 5);
-    a.setAttribute("width", 10);
-    a.setAttribute("height", 10);
-    a.setAttribute("class", "draw-anchor");
-    heroDraw.appendChild(a);
-    const s = document.createElement("span");
-    s.className = `draw-shape ds-${kinds[kindIdx++ % kinds.length]}`;
-    s.style.left = `${x + 16}px`;
-    s.style.top = `${y - 34}px`;
-    drawShapes.appendChild(s);
-  });
-  heroSection.addEventListener("dblclick", (e) => {
-    if (e.target.closest("a, button, h1, p, ul")) return;
-    heroDraw.innerHTML = "";
-    drawShapes.innerHTML = "";
-    pts = [];
-    poly = null;
-  });
-}
-
 // ── Footer year ──
 document.getElementById("year").textContent = new Date().getFullYear();
