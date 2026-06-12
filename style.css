@@ -822,13 +822,13 @@ html[data-theme="light"] .nav-toggle span { background: var(--text); }
   animation-duration: 5.4s; animation-delay: 1s;
 }
 .fl-pen {
-  top: 33%; right: 17%;
+  top: 15%; right: 6%;
   animation: penWiggle 5.4s ease-in-out infinite alternate;
   filter: drop-shadow(0 8px 18px rgba(230, 126, 34, 0.35));
 }
 @keyframes penWiggle {
-  from { transform: translate(var(--px, 0), calc(var(--py, 0) - 8px)) rotate(116deg); }
-  to { transform: translate(var(--px, 0), calc(var(--py, 0) + 8px)) rotate(126deg); }
+  from { transform: translate(var(--px, 0), calc(var(--py, 0) - 8px)) rotate(41deg); }
+  to { transform: translate(var(--px, 0), calc(var(--py, 0) + 8px)) rotate(49deg); }
 }
 .fl-emoji { font-size: 1.7rem; }
 .fl-emoji.e1 { top: 14%; right: 26%; animation-duration: 6.8s; animation-delay: 0.3s; }
