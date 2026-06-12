@@ -209,8 +209,10 @@ if (heroDraw && drawShapes && heroSection) {
   let pts = [];
   let poly = null;
   let kindIdx = 0;
+  const blankTarget = (e) =>
+    e.target === heroSection || e.target.classList.contains("container");
   heroSection.addEventListener("click", (e) => {
-    if (e.target.closest("a, button") || e.detail > 1) return;
+    if (!blankTarget(e) || e.detail > 1) return;
     const r = heroSection.getBoundingClientRect();
     const x = e.clientX - r.left;
     const y = e.clientY - r.top;
@@ -235,7 +237,7 @@ if (heroDraw && drawShapes && heroSection) {
     drawShapes.appendChild(s);
   });
   heroSection.addEventListener("dblclick", (e) => {
-    if (e.target.closest("a, button")) return;
+    if (e.target.closest("a, button, h1, p, ul")) return;
     heroDraw.innerHTML = "";
     drawShapes.innerHTML = "";
     pts = [];
