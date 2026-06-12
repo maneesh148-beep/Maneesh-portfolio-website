@@ -751,6 +751,60 @@ html[data-theme="light"] .spotlight::before {
 }
 html[data-theme="light"] .nav-toggle span { background: var(--text); }
 
+/* ── Motion pack ── */
+/* Ambient glow drift */
+@keyframes glowDrift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-44px, 32px, 0) scale(1.07); }
+}
+.bg-glow { animation: glowDrift 26s ease-in-out infinite alternate; }
+
+/* Gradient shimmer on hero accent word */
+.hero-title em { background-size: 200% 100%; background-position: 0% 0; animation: shimmer 7s ease-in-out infinite alternate; }
+@keyframes shimmer { to { background-position: 100% 0; } }
+
+/* Thumbnail zoom on card hover */
+.work-card:hover .thumb-img { transform: translateY(0) scale(1.03); }
+.work-card:hover .thumb-img--free { transform: translateY(0) scale(1.04); }
+
+/* Staggered tag pills inside work cards */
+.work-card .work-tags li { opacity: 0; transform: translateY(8px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+.work-card.in .work-tags li { opacity: 1; transform: none; }
+.work-card.in .work-tags li:nth-child(1) { transition-delay: 0.25s; }
+.work-card.in .work-tags li:nth-child(2) { transition-delay: 0.35s; }
+.work-card.in .work-tags li:nth-child(3) { transition-delay: 0.45s; }
+
+/* Staggered skill chips */
+.skill-chips li { opacity: 0; transform: translateY(10px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), border-color 0.2s, color 0.2s, background 0.2s; }
+.skill-chips.in li { opacity: 1; transform: none; }
+.skill-chips.in li:nth-child(1) { transition-delay: 0.05s; }
+.skill-chips.in li:nth-child(2) { transition-delay: 0.12s; }
+.skill-chips.in li:nth-child(3) { transition-delay: 0.19s; }
+.skill-chips.in li:nth-child(4) { transition-delay: 0.26s; }
+.skill-chips.in li:nth-child(5) { transition-delay: 0.33s; }
+.skill-chips.in li:nth-child(6) { transition-delay: 0.4s; }
+.skill-chips.in li:nth-child(7) { transition-delay: 0.47s; }
+.skill-chips.in li:nth-child(8) { transition-delay: 0.54s; }
+
+/* Timeline dot pop */
+.timeline-item::before { transform: scale(0); transition: transform 0.45s var(--ease) 0.25s; }
+.timeline-item.in::before { transform: scale(1); }
+
+/* Expertise number tilt on hover */
+.service-num { transition: transform 0.35s var(--ease); }
+.service-card:hover .service-num { transform: rotate(-8deg) scale(1.18); }
+
+/* Logo dot bounce on hover */
+.nav-logo .dot { display: inline-block; transition: transform 0.3s var(--ease); }
+.nav-logo:hover .dot { transform: translateY(-3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow, .hero-title em { animation: none; }
+  .work-card .work-tags li, .skill-chips li { opacity: 1; transform: none; transition: none; }
+  .timeline-item::before { transform: scale(1); transition: none; }
+  .work-card:hover .thumb-img, .work-card:hover .thumb-img--free { transform: none; }
+}
+
 </style>
   <script type="application/ld+json">
   {
