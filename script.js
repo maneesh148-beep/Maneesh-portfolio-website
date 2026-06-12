@@ -184,65 +184,23 @@ if (finePointer && !reduceMotion && hero && heroSpot) {
   });
 }
 
-// ── Hero floating particles ──
-const heroCanvas = document.getElementById("heroParticles");
-if (heroCanvas && !reduceMotion) {
-  const pctx = heroCanvas.getContext("2d");
-  let w, h, parts = [], running = false, raf;
-  let mx = 0.5, my = 0.5;
-  const COUNT = 34;
-  const resize = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = heroCanvas.clientWidth;
-    h = heroCanvas.clientHeight;
-    heroCanvas.width = w * dpr;
-    heroCanvas.height = h * dpr;
-    pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  };
-  const seed = () => {
-    parts = Array.from({ length: COUNT }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: 1 + Math.random() * 2.2,
-      vy: 0.15 + Math.random() * 0.35,
-      vx: (Math.random() - 0.5) * 0.12,
-      a: 0.12 + Math.random() * 0.35,
-      tw: Math.random() * Math.PI * 2,
-    }));
-  };
-  const tick = () => {
-    pctx.clearRect(0, 0, w, h);
-    const px = (mx - 0.5) * 16;
-    const py = (my - 0.5) * 12;
-    for (const p of parts) {
-      p.y -= p.vy;
-      p.x += p.vx;
-      p.tw += 0.02;
-      if (p.y < -6) { p.y = h + 6; p.x = Math.random() * w; }
-      if (p.x < -6) p.x = w + 6;
-      else if (p.x > w + 6) p.x = -6;
-      const alpha = p.a * (0.6 + 0.4 * Math.sin(p.tw));
-      pctx.beginPath();
-      pctx.arc(p.x + px * p.r * 0.3, p.y + py * p.r * 0.3, p.r, 0, Math.PI * 2);
-      pctx.fillStyle = `rgba(230, 126, 34, ${alpha})`;
-      pctx.fill();
-    }
-    raf = requestAnimationFrame(tick);
-  };
-  resize();
-  seed();
-  window.addEventListener("resize", () => { resize(); seed(); }, { passive: true });
-  if (finePointer) {
+// ── Pen-tool path draw ──
+const penSvg = document.getElementById("heroPen");
+if (penSvg && !reduceMotion) {
+  penSvg.querySelectorAll(".pen-path").forEach((p) => {
+    const len = Math.ceil(p.getTotalLength());
+    p.style.setProperty("--len", len);
+  });
+  const penGroup = document.getElementById("penGroup");
+  if (finePointer && penGroup) {
     window.addEventListener("pointermove", (e) => {
-      mx = e.clientX / window.innerWidth;
-      my = e.clientY / window.innerHeight;
+      const dx = (e.clientX / window.innerWidth - 0.5) * 18;
+      const dy = (e.clientY / window.innerHeight - 0.5) * 12;
+      penGroup.style.transform = `translate(${dx}px, ${dy}px)`;
     }, { passive: true });
   }
-  // Animate only while the hero is on screen
-  new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting && !running) { running = true; tick(); }
-    else if (!entry.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
-  }).observe(heroCanvas);
+} else if (penSvg) {
+  penSvg.style.display = "none";
 }
 
 // ── Footer year ──

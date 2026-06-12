@@ -806,9 +806,39 @@ html[data-theme="light"] .nav-toggle span { background: var(--text); }
 }
 
 /* ── Hero spotlight + particles ── */
-.hero-particles, .hero-spotlight {
+.hero-pen, .hero-spotlight {
   position: absolute; inset: 0; pointer-events: none; z-index: 0;
 }
+.hero-pen { width: 100%; height: 100%; }
+.pen-path {
+  fill: none; stroke: rgba(230, 126, 34, 0.55); stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: var(--len, 1200); stroke-dashoffset: var(--len, 1200);
+  animation: penDraw 10s var(--ease) infinite;
+}
+.pen-path.p2 { animation-delay: 1.4s; stroke: rgba(230, 126, 34, 0.35); }
+@keyframes penDraw {
+  0% { stroke-dashoffset: var(--len, 1200); opacity: 1; }
+  38% { stroke-dashoffset: 0; opacity: 1; }
+  74% { stroke-dashoffset: 0; opacity: 1; }
+  86% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: var(--len, 1200); opacity: 0; }
+}
+.pen-anchor {
+  fill: var(--bg); stroke: var(--accent); stroke-width: 2;
+  transform-box: fill-box; transform-origin: center;
+  animation: penPop 10s var(--ease) infinite;
+}
+.pen-handle { stroke: rgba(230, 126, 34, 0.45); stroke-width: 1.5; stroke-dasharray: 3 4; animation: penPop 10s var(--ease) infinite; }
+.pen-handle-dot { fill: var(--accent); animation: penPop 10s var(--ease) infinite; }
+.pen-anchors.a2 .pen-anchor, .pen-anchors.a2 .pen-handle, .pen-anchors.a2 .pen-handle-dot { animation-delay: 1.4s; }
+@keyframes penPop {
+  0%, 36% { opacity: 0; transform: scale(0); }
+  44% { opacity: 1; transform: scale(1); }
+  74% { opacity: 1; transform: scale(1); }
+  84%, 100% { opacity: 0; transform: scale(0); }
+}
+html[data-theme="light"] .pen-anchor { fill: #f7f7f8; }
 .hero-spotlight {
   opacity: 0; transition: opacity 0.6s;
   background: radial-gradient(540px circle at var(--hx, 50%) var(--hy, 40%),
@@ -821,7 +851,7 @@ html[data-theme="light"] .hero-spotlight {
     rgba(230, 126, 34, 0.16), transparent 65%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-particles, .hero-spotlight { display: none; }
+  .hero-pen, .hero-spotlight { display: none; }
 }
 
 </style>
@@ -879,7 +909,28 @@ html[data-theme="light"] .hero-spotlight {
 
     <!-- ── HERO ── -->
     <section class="hero">
-      <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
+      <svg class="hero-pen" id="heroPen" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g id="penGroup">
+          <!-- stroke 1: top right -->
+          <path class="pen-path" d="M 950 110 C 1130 60, 1280 170, 1210 310 C 1150 430, 980 430, 1040 560" />
+          <g class="pen-anchors a1">
+            <line class="pen-handle" x1="1210" y1="310" x2="1295" y2="262" />
+            <circle class="pen-handle-dot" cx="1295" cy="262" r="4" />
+            <rect class="pen-anchor" x="944" y="104" width="12" height="12" />
+            <rect class="pen-anchor" x="1204" y="304" width="12" height="12" />
+            <rect class="pen-anchor" x="1034" y="554" width="12" height="12" />
+          </g>
+          <!-- stroke 2: bottom left -->
+          <path class="pen-path p2" d="M 60 640 C 200 560, 330 700, 470 610 C 580 540, 680 560, 740 610" />
+          <g class="pen-anchors a2">
+            <line class="pen-handle" x1="470" y1="610" x2="540" y2="668" />
+            <circle class="pen-handle-dot" cx="540" cy="668" r="4" />
+            <rect class="pen-anchor" x="54" y="634" width="12" height="12" />
+            <rect class="pen-anchor" x="464" y="604" width="12" height="12" />
+            <rect class="pen-anchor" x="734" y="604" width="12" height="12" />
+          </g>
+        </g>
+      </svg>
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
         <p class="hero-badge intro intro-1"><span class="pulse-dot"></span> Hey, I'm Maneesh 👋 · Lead Product Designer (L6) @ Target</p>
@@ -1378,65 +1429,23 @@ if (finePointer && !reduceMotion && hero && heroSpot) {
   });
 }
 
-// ── Hero floating particles ──
-const heroCanvas = document.getElementById("heroParticles");
-if (heroCanvas && !reduceMotion) {
-  const pctx = heroCanvas.getContext("2d");
-  let w, h, parts = [], running = false, raf;
-  let mx = 0.5, my = 0.5;
-  const COUNT = 34;
-  const resize = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = heroCanvas.clientWidth;
-    h = heroCanvas.clientHeight;
-    heroCanvas.width = w * dpr;
-    heroCanvas.height = h * dpr;
-    pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  };
-  const seed = () => {
-    parts = Array.from({ length: COUNT }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: 1 + Math.random() * 2.2,
-      vy: 0.15 + Math.random() * 0.35,
-      vx: (Math.random() - 0.5) * 0.12,
-      a: 0.12 + Math.random() * 0.35,
-      tw: Math.random() * Math.PI * 2,
-    }));
-  };
-  const tick = () => {
-    pctx.clearRect(0, 0, w, h);
-    const px = (mx - 0.5) * 16;
-    const py = (my - 0.5) * 12;
-    for (const p of parts) {
-      p.y -= p.vy;
-      p.x += p.vx;
-      p.tw += 0.02;
-      if (p.y < -6) { p.y = h + 6; p.x = Math.random() * w; }
-      if (p.x < -6) p.x = w + 6;
-      else if (p.x > w + 6) p.x = -6;
-      const alpha = p.a * (0.6 + 0.4 * Math.sin(p.tw));
-      pctx.beginPath();
-      pctx.arc(p.x + px * p.r * 0.3, p.y + py * p.r * 0.3, p.r, 0, Math.PI * 2);
-      pctx.fillStyle = `rgba(230, 126, 34, ${alpha})`;
-      pctx.fill();
-    }
-    raf = requestAnimationFrame(tick);
-  };
-  resize();
-  seed();
-  window.addEventListener("resize", () => { resize(); seed(); }, { passive: true });
-  if (finePointer) {
+// ── Pen-tool path draw ──
+const penSvg = document.getElementById("heroPen");
+if (penSvg && !reduceMotion) {
+  penSvg.querySelectorAll(".pen-path").forEach((p) => {
+    const len = Math.ceil(p.getTotalLength());
+    p.style.setProperty("--len", len);
+  });
+  const penGroup = document.getElementById("penGroup");
+  if (finePointer && penGroup) {
     window.addEventListener("pointermove", (e) => {
-      mx = e.clientX / window.innerWidth;
-      my = e.clientY / window.innerHeight;
+      const dx = (e.clientX / window.innerWidth - 0.5) * 18;
+      const dy = (e.clientY / window.innerHeight - 0.5) * 12;
+      penGroup.style.transform = `translate(${dx}px, ${dy}px)`;
     }, { passive: true });
   }
-  // Animate only while the hero is on screen
-  new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting && !running) { running = true; tick(); }
-    else if (!entry.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
-  }).observe(heroCanvas);
+} else if (penSvg) {
+  penSvg.style.display = "none";
 }
 
 // ── Footer year ──

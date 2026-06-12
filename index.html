@@ -68,7 +68,28 @@
 
     <!-- ── HERO ── -->
     <section class="hero">
-      <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
+      <svg class="hero-pen" id="heroPen" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g id="penGroup">
+          <!-- stroke 1: top right -->
+          <path class="pen-path" d="M 950 110 C 1130 60, 1280 170, 1210 310 C 1150 430, 980 430, 1040 560" />
+          <g class="pen-anchors a1">
+            <line class="pen-handle" x1="1210" y1="310" x2="1295" y2="262" />
+            <circle class="pen-handle-dot" cx="1295" cy="262" r="4" />
+            <rect class="pen-anchor" x="944" y="104" width="12" height="12" />
+            <rect class="pen-anchor" x="1204" y="304" width="12" height="12" />
+            <rect class="pen-anchor" x="1034" y="554" width="12" height="12" />
+          </g>
+          <!-- stroke 2: bottom left -->
+          <path class="pen-path p2" d="M 60 640 C 200 560, 330 700, 470 610 C 580 540, 680 560, 740 610" />
+          <g class="pen-anchors a2">
+            <line class="pen-handle" x1="470" y1="610" x2="540" y2="668" />
+            <circle class="pen-handle-dot" cx="540" cy="668" r="4" />
+            <rect class="pen-anchor" x="54" y="634" width="12" height="12" />
+            <rect class="pen-anchor" x="464" y="604" width="12" height="12" />
+            <rect class="pen-anchor" x="734" y="604" width="12" height="12" />
+          </g>
+        </g>
+      </svg>
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
         <p class="hero-badge intro intro-1"><span class="pulse-dot"></span> Hey, I'm Maneesh 👋 · Lead Product Designer (L6) @ Target</p>
