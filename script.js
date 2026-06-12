@@ -184,23 +184,19 @@ if (finePointer && !reduceMotion && hero && heroSpot) {
   });
 }
 
-// ── Pen-tool path draw ──
-const penSvg = document.getElementById("heroPen");
-if (penSvg && !reduceMotion) {
-  penSvg.querySelectorAll(".pen-path").forEach((p) => {
-    const len = Math.ceil(p.getTotalLength());
-    p.style.setProperty("--len", len);
-  });
-  const penGroup = document.getElementById("penGroup");
-  if (finePointer && penGroup) {
-    window.addEventListener("pointermove", (e) => {
-      const dx = (e.clientX / window.innerWidth - 0.5) * 18;
-      const dy = (e.clientY / window.innerHeight - 0.5) * 12;
-      penGroup.style.transform = `translate(${dx}px, ${dy}px)`;
-    }, { passive: true });
-  }
-} else if (penSvg) {
-  penSvg.style.display = "none";
+// ── Figma canvas stickers parallax ──
+const stickerLayer = document.getElementById("heroStickers");
+if (stickerLayer && !reduceMotion && finePointer) {
+  const items = stickerLayer.querySelectorAll(".sticker");
+  window.addEventListener("pointermove", (e) => {
+    const dx = e.clientX / window.innerWidth - 0.5;
+    const dy = e.clientY / window.innerHeight - 0.5;
+    items.forEach((el) => {
+      const d = Number(el.dataset.depth) || 10;
+      el.style.setProperty("--px", `${dx * d}px`);
+      el.style.setProperty("--py", `${dy * d}px`);
+    });
+  }, { passive: true });
 }
 
 // ── Footer year ──

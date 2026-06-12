@@ -68,28 +68,19 @@
 
     <!-- ── HERO ── -->
     <section class="hero">
-      <svg class="hero-pen" id="heroPen" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g id="penGroup">
-          <!-- stroke 1: top right -->
-          <path class="pen-path" d="M 950 110 C 1130 60, 1280 170, 1210 310 C 1150 430, 980 430, 1040 560" />
-          <g class="pen-anchors a1">
-            <line class="pen-handle" x1="1210" y1="310" x2="1295" y2="262" />
-            <circle class="pen-handle-dot" cx="1295" cy="262" r="4" />
-            <rect class="pen-anchor" x="944" y="104" width="12" height="12" />
-            <rect class="pen-anchor" x="1204" y="304" width="12" height="12" />
-            <rect class="pen-anchor" x="1034" y="554" width="12" height="12" />
-          </g>
-          <!-- stroke 2: bottom left -->
-          <path class="pen-path p2" d="M 60 640 C 200 560, 330 700, 470 610 C 580 540, 680 560, 740 610" />
-          <g class="pen-anchors a2">
-            <line class="pen-handle" x1="470" y1="610" x2="540" y2="668" />
-            <circle class="pen-handle-dot" cx="540" cy="668" r="4" />
-            <rect class="pen-anchor" x="54" y="634" width="12" height="12" />
-            <rect class="pen-anchor" x="464" y="604" width="12" height="12" />
-            <rect class="pen-anchor" x="734" y="604" width="12" height="12" />
-          </g>
-        </g>
-      </svg>
+      <div class="hero-canvasland" id="heroStickers" aria-hidden="true">
+        <div class="sticker st-frame" data-depth="8"><span>Frame 01</span></div>
+        <div class="sticker st-cursor1" data-depth="22">
+          <svg width="15" height="20" viewBox="0 0 14 19"><path d="M0 0 L0 16 L4.5 12.5 L7.5 19 L10 18 L7 11.5 L13 11 Z" fill="#e67e22"/></svg>
+          <span class="cursor-tag tag-orange">Maneesh</span>
+        </div>
+        <div class="sticker st-comment" data-depth="16">💬 Love this work!</div>
+        <div class="sticker st-swatches" data-depth="11"><i></i><i></i><i></i></div>
+        <div class="sticker st-cursor2" data-depth="14">
+          <svg width="15" height="20" viewBox="0 0 14 19"><path d="M0 0 L0 16 L4.5 12.5 L7.5 19 L10 18 L7 11.5 L13 11 Z" fill="#6e5aff"/></svg>
+          <span class="cursor-tag tag-violet">You 👀</span>
+        </div>
+      </div>
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
         <p class="hero-badge intro intro-1"><span class="pulse-dot"></span> Hey, I'm Maneesh 👋 · Lead Product Designer (L6) @ Target</p>
