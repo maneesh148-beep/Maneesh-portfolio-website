@@ -173,31 +173,5 @@ themeToggle.addEventListener("click", () => {
 });
 applyThemeUI();
 
-// ── Hero cursor spotlight ──
-const hero = document.querySelector(".hero");
-const heroSpot = document.querySelector(".hero-spotlight");
-if (finePointer && !reduceMotion && hero && heroSpot) {
-  hero.addEventListener("pointermove", (e) => {
-    const r = hero.getBoundingClientRect();
-    heroSpot.style.setProperty("--hx", `${e.clientX - r.left}px`);
-    heroSpot.style.setProperty("--hy", `${e.clientY - r.top}px`);
-  });
-}
-
-// ── Figma canvas stickers parallax ──
-const stickerLayer = document.getElementById("heroStickers");
-if (stickerLayer && !reduceMotion && finePointer) {
-  const items = stickerLayer.querySelectorAll(".sticker");
-  window.addEventListener("pointermove", (e) => {
-    const dx = e.clientX / window.innerWidth - 0.5;
-    const dy = e.clientY / window.innerHeight - 0.5;
-    items.forEach((el) => {
-      const d = Number(el.dataset.depth) || 10;
-      el.style.setProperty("--px", `${dx * d}px`);
-      el.style.setProperty("--py", `${dy * d}px`);
-    });
-  }, { passive: true });
-}
-
 // ── Footer year ──
 document.getElementById("year").textContent = new Date().getFullYear();

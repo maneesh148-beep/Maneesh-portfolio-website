@@ -924,18 +924,6 @@ html[data-theme="light"] .hero-spotlight {
 
     <!-- ── HERO ── -->
     <section class="hero">
-      <div class="hero-canvasland" id="heroStickers" aria-hidden="true">
-        <div class="sticker fl-circle" data-depth="18"></div>
-        <div class="sticker fl-rect" data-depth="12"></div>
-        <div class="sticker fl-dot" data-depth="24"></div>
-        <span class="sticker fl-pen" data-depth="26">
-          <svg width="38" height="47" viewBox="0 0 26 32"><rect x="9" y="1" width="8" height="4.5" rx="1.2" fill="#e67e22" stroke="white" stroke-width="1.2"/><path fill="#e67e22" stroke="white" stroke-width="1.3" fill-rule="evenodd" d="M13 31 L5.2 17.5 C4.4 10 8 5.5 13 5.5 C18 5.5 21.6 10 20.8 17.5 Z M13 11.6 a3.1 3.1 0 1 0 0.002 0 Z"/><line x1="13" y1="17.8" x2="13" y2="27" stroke="white" stroke-width="1.1"/></svg>
-        </span>
-        <span class="sticker fl-emoji e1" data-depth="16">🎨</span>
-        <span class="sticker fl-emoji e2" data-depth="10">✨</span>
-        <span class="sticker fl-emoji e3" data-depth="21">👋</span>
-      </div>
-      <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container">
         <p class="hero-badge intro intro-1"><span class="pulse-dot"></span> Hey, I'm Maneesh 👋 · Lead Product Designer (L6) @ Target</p>
         <h1 class="hero-title">
@@ -1421,32 +1409,6 @@ themeToggle.addEventListener("click", () => {
   applyThemeUI();
 });
 applyThemeUI();
-
-// ── Hero cursor spotlight ──
-const hero = document.querySelector(".hero");
-const heroSpot = document.querySelector(".hero-spotlight");
-if (finePointer && !reduceMotion && hero && heroSpot) {
-  hero.addEventListener("pointermove", (e) => {
-    const r = hero.getBoundingClientRect();
-    heroSpot.style.setProperty("--hx", `${e.clientX - r.left}px`);
-    heroSpot.style.setProperty("--hy", `${e.clientY - r.top}px`);
-  });
-}
-
-// ── Figma canvas stickers parallax ──
-const stickerLayer = document.getElementById("heroStickers");
-if (stickerLayer && !reduceMotion && finePointer) {
-  const items = stickerLayer.querySelectorAll(".sticker");
-  window.addEventListener("pointermove", (e) => {
-    const dx = e.clientX / window.innerWidth - 0.5;
-    const dy = e.clientY / window.innerHeight - 0.5;
-    items.forEach((el) => {
-      const d = Number(el.dataset.depth) || 10;
-      el.style.setProperty("--px", `${dx * d}px`);
-      el.style.setProperty("--py", `${dy * d}px`);
-    });
-  }, { passive: true });
-}
 
 // ── Footer year ──
 document.getElementById("year").textContent = new Date().getFullYear();
