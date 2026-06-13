@@ -88,7 +88,7 @@ export default function Hero() {
             View case studies <span className="btn-icon" aria-hidden="true">↓</span>
           </a>
           <a
-            href="/Maneesh-Jaiswal-Resume.pdf"
+            href="Maneesh-Jaiswal-Resume.pdf"
             download="Maneesh-Jaiswal-Resume.pdf"
             className="btn btn-ghost magnetic"
             {...magneticHandlers()}

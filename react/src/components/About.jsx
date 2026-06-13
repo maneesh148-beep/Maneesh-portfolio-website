@@ -14,7 +14,7 @@ export default function About() {
       <div className="container about-grid">
         <div className={`about-portrait reveal${portraitShown ? " in" : ""}`} ref={portraitRef}>
           <div className="portrait-frame">
-            <img src="/images/maneesh.jpg" alt="Maneesh Jaiswal" />
+            <img src="images/maneesh.jpg" alt="Maneesh Jaiswal" />
           </div>
           <div className="portrait-card">
             <span className="pulse-dot" />
