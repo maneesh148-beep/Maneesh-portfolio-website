@@ -173,5 +173,38 @@ themeToggle.addEventListener("click", () => {
 });
 applyThemeUI();
 
+
+// ── Approach timeline: line fills as the row scrolls horizontally ──
+const apGrid = document.querySelector(".approach-grid");
+const apFill = document.querySelector(".approach-line-fill");
+if (apGrid && apFill && !reduceMotion) {
+  const upd = () => {
+    const max = apGrid.scrollWidth - apGrid.clientWidth;
+    const p = max > 0 ? apGrid.scrollLeft / max : 0;
+    apFill.style.width = `${p * 100}%`;
+    apGrid.classList.toggle("fade-left", apGrid.scrollLeft > 4);
+    apGrid.classList.toggle("at-end", max > 0 && apGrid.scrollLeft >= max - 4);
+  };
+  apGrid.addEventListener("scroll", upd, { passive: true });
+  window.addEventListener("resize", upd, { passive: true });
+  upd();
+}
+
+// ── Experience accordion ──
+document.querySelectorAll(".xp-head").forEach((head) => {
+  head.addEventListener("click", () => {
+    const item = head.closest(".xp-item");
+    const open = item.classList.contains("is-open");
+    document.querySelectorAll(".xp-item.is-open").forEach((o) => {
+      o.classList.remove("is-open");
+      o.querySelector(".xp-head").setAttribute("aria-expanded", "false");
+    });
+    if (!open) {
+      item.classList.add("is-open");
+      head.setAttribute("aria-expanded", "true");
+    }
+  });
+});
+
 // ── Footer year ──
 document.getElementById("year").textContent = new Date().getFullYear();

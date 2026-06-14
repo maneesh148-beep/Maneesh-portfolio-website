@@ -1,6 +1,5 @@
 import { EMAIL, NAV_LINKS, SOCIALS } from "../data";
 import { useReveal } from "../hooks/useReveal";
-import { magneticHandlers } from "../hooks/useInteractions";
 
 const SITE_LINKS = [{ href: "#top", label: "Home" }, ...NAV_LINKS];
 
@@ -16,12 +15,8 @@ export default function Contact() {
             <br />
             together.
           </h2>
-          <a
-            href={`mailto:${EMAIL}`}
-            className="btn btn-primary contact-cta magnetic"
-            {...magneticHandlers()}
-          >
-            Let's talk <span aria-hidden="true">↗</span>
+          <a href={`mailto:${EMAIL}`} className="contact-email">
+            {EMAIL} <span aria-hidden="true">↗</span>
           </a>
         </div>
         <div className="contact-cols">

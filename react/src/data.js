@@ -184,28 +184,28 @@ export const ABOUT = {
 
 export const EXPERIENCE = [
   {
-    period: "2024 – Now",
-    role: "Lead UX Designer (L6), Guest UX · Target Corp.",
+    company: "Target Corp. (2024–Now)",
+    role: "Lead UX Designer (L6), Guest UX",
     desc: "Leading product design for discretionary categories, solving digital shopping experiences across discovery, browse and PDP for millions of Target guests in the US.",
   },
   {
-    period: "2021 – 2024",
-    role: "Lead Product Designer · Meesho",
+    company: "Meesho (2021–24)",
+    role: "Lead Product Designer",
     desc: "Owned pricing, seller growth and non-GST charters across buyer and seller side. Built the Crystal Design System from scratch and mentored designers across the Pricing and Seller Growth pods.",
   },
   {
-    period: "2018 – 2021",
-    role: "Senior Product Designer · BlackBuck",
+    company: "BlackBuck (2018–21)",
+    role: "Senior Product Designer",
     desc: "Designed supply- and demand-side apps so truckers get max loads and manage truck performance, including the Auto-Recharge Plus FASTag subscription, a top revenue contributor at launch.",
   },
   {
-    period: "2016 – 2018",
-    role: "Senior Product Designer · PayU / Citrus Pay",
+    company: "PayU / Citrus Pay (2016–18)",
+    role: "Senior Product Designer",
     desc: "Co-designed LazyPay BNPL from 0→1 and the full Citrus consumer payments experience: wallet, UPI, recharge and bill payments across app and web.",
   },
   {
-    period: "2012 – 2016",
-    role: "Earlier · Ola & Angel Film Studio",
+    company: "Ola & Angel Film Studio (2012–16)",
+    role: "Communication & Motion Design",
     desc: "Communication design at Ola, including PM Modi's E-rickshaw launch campaign. Before that, 3D, motion and VFX work for film and FMCG branding.",
   },
 ];
