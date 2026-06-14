@@ -1,6 +1,6 @@
 <svg width="144" height="32" viewBox="0 0 144 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g style="mix-blend-mode:luminosity" opacity="0.5" clip-path="url(#clip0_68366_802)">
-<rect opacity="0.6" width="143.88" height="32" fill="url(#pattern0_68366_802)"/>
+<g clip-path="url(#clip0_68366_802)">
+<rect width="143.88" height="32" fill="url(#pattern0_68366_802)"/>
 </g>
 <defs>
 <pattern id="pattern0_68366_802" patternContentUnits="objectBoundingBox" width="1" height="1">
