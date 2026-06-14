@@ -1011,10 +1011,12 @@ html[data-theme="light"] .hero-spotlight {
   padding: 22px 4px; text-align: left; color: var(--text);
   transition: color 0.2s;
 }
+.xp-co-wrap { display: flex; flex-direction: column; gap: 4px; }
 .xp-co {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.01em;
 }
+.xp-loc { font-weight: 400; font-size: 0.9rem; color: var(--text-dim); letter-spacing: 0; }
 .xp-head:hover { color: var(--accent-text); }
 
 .xp-panel {

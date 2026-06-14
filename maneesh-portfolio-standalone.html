@@ -1027,10 +1027,12 @@ html[data-theme="light"] .hero-spotlight {
   padding: 22px 4px; text-align: left; color: var(--text);
   transition: color 0.2s;
 }
+.xp-co-wrap { display: flex; flex-direction: column; gap: 4px; }
 .xp-co {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.01em;
 }
+.xp-loc { font-weight: 400; font-size: 0.9rem; color: var(--text-dim); letter-spacing: 0; }
 .xp-head:hover { color: var(--accent-text); }
 
 .xp-panel {
@@ -1445,7 +1447,10 @@ html[data-theme="light"] .hero-spotlight {
         <div class="xp-list">
           <div class="xp-item is-open">
             <button class="xp-head" aria-expanded="true">
-              <span class="xp-co">Target Corp. (2024–Now) · Bengaluru, India</span>
+              <span class="xp-co-wrap">
+                <span class="xp-co">Target Corp. (2024–Now)</span>
+                <span class="xp-loc">Bengaluru, India</span>
+              </span>
               <span class="xp-toggle" aria-hidden="true"></span>
             </button>
             <div class="xp-panel">
@@ -1457,7 +1462,10 @@ html[data-theme="light"] .hero-spotlight {
           </div>
           <div class="xp-item">
             <button class="xp-head" aria-expanded="false">
-              <span class="xp-co">Meesho (2021–24) · Bengaluru, India</span>
+              <span class="xp-co-wrap">
+                <span class="xp-co">Meesho (2021–24)</span>
+                <span class="xp-loc">Bengaluru, India</span>
+              </span>
               <span class="xp-toggle" aria-hidden="true"></span>
             </button>
             <div class="xp-panel">
@@ -1469,7 +1477,10 @@ html[data-theme="light"] .hero-spotlight {
           </div>
           <div class="xp-item">
             <button class="xp-head" aria-expanded="false">
-              <span class="xp-co">BlackBuck (2018–21) · Bengaluru, India</span>
+              <span class="xp-co-wrap">
+                <span class="xp-co">BlackBuck (2018–21)</span>
+                <span class="xp-loc">Bengaluru, India</span>
+              </span>
               <span class="xp-toggle" aria-hidden="true"></span>
             </button>
             <div class="xp-panel">
@@ -1481,7 +1492,10 @@ html[data-theme="light"] .hero-spotlight {
           </div>
           <div class="xp-item">
             <button class="xp-head" aria-expanded="false">
-              <span class="xp-co">PayU / Citrus Pay (2016–18) · Mumbai, India</span>
+              <span class="xp-co-wrap">
+                <span class="xp-co">PayU / Citrus Pay (2016–18)</span>
+                <span class="xp-loc">Bengaluru, India</span>
+              </span>
               <span class="xp-toggle" aria-hidden="true"></span>
             </button>
             <div class="xp-panel">
@@ -1493,7 +1507,10 @@ html[data-theme="light"] .hero-spotlight {
           </div>
           <div class="xp-item">
             <button class="xp-head" aria-expanded="false">
-              <span class="xp-co">Ola & Angel Film Studio (2012–16) · Bengaluru, India</span>
+              <span class="xp-co-wrap">
+                <span class="xp-co">Ola & Angel Film Studio (2012–16)</span>
+                <span class="xp-loc">Bengaluru, India</span>
+              </span>
               <span class="xp-toggle" aria-hidden="true"></span>
             </button>
             <div class="xp-panel">

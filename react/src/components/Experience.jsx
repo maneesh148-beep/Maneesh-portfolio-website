@@ -23,7 +23,10 @@ export default function Experience() {
                   aria-expanded={isOpen}
                   onClick={() => setOpen(isOpen ? -1 : i)}
                 >
-                  <span className="xp-co">{e.company}</span>
+                  <span className="xp-co-wrap">
+                    <span className="xp-co">{e.company}</span>
+                    <span className="xp-loc">{e.loc}</span>
+                  </span>
                   <span className="xp-toggle" aria-hidden="true" />
                 </button>
                 <div className="xp-panel">
