@@ -866,7 +866,7 @@ html[data-theme="light"] .hero-spotlight {
 .contact-cta { gap: 10px; }
 .contact-cols {
   display: flex; gap: clamp(32px, 6vw, 72px); justify-content: flex-end;
-  padding-top: 6px;
+  padding-top: 38px;
 }
 .contact-cols ul { list-style: none; display: flex; flex-direction: column; gap: 16px; min-width: 150px; }
 .contact-cols a {
@@ -880,7 +880,7 @@ html[data-theme="light"] .hero-spotlight {
 
 @media (max-width: 760px) {
   .contact-grid { grid-template-columns: 1fr; gap: 44px; }
-  .contact-cols { justify-content: flex-start; gap: 48px; }
+  .contact-cols { justify-content: flex-start; gap: 48px; padding-top: 0; }
   .contact-cols ul { min-width: 120px; }
 }
 
