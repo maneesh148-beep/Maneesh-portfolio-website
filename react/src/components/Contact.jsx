@@ -25,9 +25,11 @@ export default function Contact() {
           >
             Download Resume <span className="btn-icon" aria-hidden="true">↓</span>
           </a>
-          <a href={`mailto:${EMAIL}`} className="contact-email">
-            {EMAIL} <span aria-hidden="true">↗</span>
-          </a>
+          <div className="contact-info">
+            <a href={`mailto:${EMAIL}`} className="contact-email">{EMAIL}</a>
+            <span className="contact-div" aria-hidden="true" />
+            <a href="tel:+917022833083" className="contact-email">+91 70228 33083</a>
+          </div>
         </div>
         <div className="contact-cols">
           <ul aria-label="Site links">

@@ -964,15 +964,14 @@ html[data-theme="light"] .hero-spotlight {
 @media (max-width: 600px) { .approach-card { flex-basis: 236px; } }
 
 /* ── Contact email upfront ── */
+.contact-info { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 .contact-email {
-  display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(1.3rem, 3vw, 1.9rem); color: var(--accent-text);
-  transition: color 0.2s, transform 0.25s var(--ease);
+  font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--accent-text);
+  transition: color 0.2s;
 }
-.contact-email span { transition: transform 0.25s var(--ease); }
 .contact-email:hover { color: var(--accent); }
-.contact-email:hover span { transform: translate(3px, -3px); }
+.contact-div { width: 1px; height: 20px; background: var(--border); }
 
 /* approach row: fade both edges based on scroll position */
 .approach-grid.fade-left {
