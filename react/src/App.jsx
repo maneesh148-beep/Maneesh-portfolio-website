@@ -1,8 +1,9 @@
 import Background from "./components/Background";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
+import Logos from "./components/Logos";
 import Work from "./components/Work";
+import Approach from "./components/Approach";
 import Expertise from "./components/Expertise";
 import About from "./components/About";
 import Experience from "./components/Experience";
@@ -13,7 +14,7 @@ import { useTheme } from "./hooks/useTheme";
 import { useScroll } from "./hooks/useScroll";
 import { useActiveSection } from "./hooks/useActiveSection";
 
-const SECTION_IDS = ["work", "expertise", "about", "experience", "contact"];
+const SECTION_IDS = ["work", "approach", "skills", "about", "experience", "contact"];
 
 export default function App() {
   const { theme, toggle } = useTheme();
@@ -28,8 +29,9 @@ export default function App() {
       <Nav scrolled={scrolled} active={active} theme={theme} onToggleTheme={toggle} />
       <main id="top">
         <Hero />
-        <Marquee />
+        <Logos />
         <Work />
+        <Approach />
         <Expertise />
         <About />
         <Experience />

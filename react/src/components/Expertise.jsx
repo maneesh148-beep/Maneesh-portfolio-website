@@ -25,10 +25,10 @@ function Card({ item }) {
 export default function Expertise() {
   const [headRef, headShown] = useReveal();
   return (
-    <section className="section section-alt" id="expertise">
+    <section className="section section-alt" id="skills">
       <div className="container">
         <div className={`section-head reveal${headShown ? " in" : ""}`} ref={headRef}>
-          <p className="eyebrow">02 · Expertise</p>
+          <p className="eyebrow">03 · Skills</p>
           <h2>What I Bring to Product Teams</h2>
           <p className="section-sub">{EXPERTISE_INTRO}</p>
         </div>

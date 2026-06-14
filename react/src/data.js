@@ -2,9 +2,60 @@
 
 export const NAV_LINKS = [
   { href: "#work", label: "Work" },
-  { href: "#expertise", label: "Expertise" },
+  { href: "#approach", label: "Approach" },
+  { href: "#skills", label: "Skills" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
+];
+
+export const LOGOS = ["target", "meesho", "blackbuck", "payu", "citrus", "ola"];
+
+export const APPROACH_INTRO =
+  "Every challenge is different, but my approach stays consistent: understand deeply, align early, validate quickly, and measure impact. I work across design, product, engineering, and research to turn ambiguity into meaningful outcomes.";
+
+export const APPROACH = [
+  {
+    num: "01",
+    title: "Discover",
+    lead: "Understand the problem before designing the solution.",
+    desc: "I combine user insights, business context, and data to uncover opportunities worth solving.",
+    tags: "Research • Analytics • Stakeholder Alignment",
+  },
+  {
+    num: "02",
+    title: "Define",
+    lead: "Align teams around the right opportunity.",
+    desc: "I synthesize insights into clear problem statements, priorities, and success metrics.",
+    tags: "Problem Framing • Prioritization • Journey Mapping",
+  },
+  {
+    num: "03",
+    title: "Explore & Validate",
+    lead: "Test assumptions early and reduce risk.",
+    desc: "I explore multiple directions, prototype rapidly, and validate ideas before scaling investment.",
+    tags: "Ideation • Prototyping • User Testing",
+  },
+  {
+    num: "04",
+    title: "Design",
+    lead: "Create experiences that are simple, scalable, and intuitive.",
+    desc: "I focus on usability, consistency, accessibility, and long-term product growth.",
+    tags: "UX Design • UI Design • Design Systems",
+  },
+  {
+    num: "05",
+    title: "Deliver",
+    lead: "Transform ideas into products through strong collaboration.",
+    desc: "I partner closely with product and engineering to ensure quality from concept to launch.",
+    tags: "Execution • Design QA • Cross-functional Leadership",
+  },
+  {
+    num: "06",
+    title: "Optimize",
+    lead: "Measure outcomes and continuously improve.",
+    desc: "I use data, feedback, and experimentation to refine experiences and maximize impact.",
+    tags: "Metrics • Experimentation • Iteration",
+  },
 ];
 
 export const HERO = {

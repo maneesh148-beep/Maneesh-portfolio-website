@@ -26,7 +26,7 @@ export default function About() {
         </div>
         <div className="about-copy">
           <p className={`eyebrow reveal${eyebrowShown ? " in" : ""}`} ref={eyebrowRef}>
-            03 · About
+            04 · About
           </p>
           <h2 className={`reveal${h2Shown ? " in" : ""}`} ref={h2Ref}>
             Design leader for products that scale to millions.

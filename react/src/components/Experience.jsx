@@ -20,7 +20,7 @@ export default function Experience() {
     <section className="section section-alt" id="experience">
       <div className="container">
         <div className={`section-head reveal${headShown ? " in" : ""}`} ref={headRef}>
-          <p className="eyebrow">04 · Experience</p>
+          <p className="eyebrow">05 · Experience</p>
           <h2>13+ years with leading tech companies</h2>
         </div>
         <ol className="timeline">
