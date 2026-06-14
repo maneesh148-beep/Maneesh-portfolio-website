@@ -963,6 +963,26 @@ html[data-theme="light"] .hero-spotlight {
 }
 @media (max-width: 600px) { .approach-card { flex-basis: 236px; } }
 
+/* approach carousel arrows */
+.approach-scroller { position: relative; }
+.approach-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%) scale(0.9);
+  z-index: 4; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  color: var(--text); cursor: pointer;
+  opacity: 0; pointer-events: none;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.2s, color 0.2s;
+}
+.approach-arrow svg { width: 18px; height: 18px; }
+.approach-arrow:hover { border-color: var(--accent); color: var(--accent); }
+.approach-arrow.prev { left: -10px; }
+.approach-arrow.next { right: -10px; }
+.approach-scroller.can-prev .approach-arrow.prev,
+.approach-scroller.can-next .approach-arrow.next { opacity: 1; pointer-events: auto; transform: translateY(-50%) scale(1); }
+@media (max-width: 600px) { .approach-arrow { display: none; } }
+
 /* ── Contact email upfront ── */
 .contact-info { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 .contact-email {

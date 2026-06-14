@@ -979,6 +979,26 @@ html[data-theme="light"] .hero-spotlight {
 }
 @media (max-width: 600px) { .approach-card { flex-basis: 236px; } }
 
+/* approach carousel arrows */
+.approach-scroller { position: relative; }
+.approach-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%) scale(0.9);
+  z-index: 4; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  color: var(--text); cursor: pointer;
+  opacity: 0; pointer-events: none;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.2s, color 0.2s;
+}
+.approach-arrow svg { width: 18px; height: 18px; }
+.approach-arrow:hover { border-color: var(--accent); color: var(--accent); }
+.approach-arrow.prev { left: -10px; }
+.approach-arrow.next { right: -10px; }
+.approach-scroller.can-prev .approach-arrow.prev,
+.approach-scroller.can-next .approach-arrow.next { opacity: 1; pointer-events: auto; transform: translateY(-50%) scale(1); }
+@media (max-width: 600px) { .approach-arrow { display: none; } }
+
 /* ── Contact email upfront ── */
 .contact-info { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 .contact-email {
@@ -1240,6 +1260,7 @@ html[data-theme="light"] .hero-spotlight {
           <p class="section-sub">Every challenge is different, but my approach stays consistent: understand deeply, align early, validate quickly, and measure impact. I work across design, product, engineering, and research to turn ambiguity into meaningful outcomes.</p>
         </div>
         <div class="approach-line" aria-hidden="true"><span class="approach-line-fill"></span></div>
+        <div class="approach-scroller">
         <div class="approach-grid">
           <article class="approach-card reveal">
             <span class="service-num">01</span>
@@ -1295,6 +1316,13 @@ html[data-theme="light"] .hero-spotlight {
             <p class="approach-tags">Metrics • Experimentation • Iteration</p>
             </div>
           </article>
+        </div>
+        <button class="approach-arrow prev" type="button" aria-label="Scroll to previous steps">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="approach-arrow next" type="button" aria-label="Scroll to more steps">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         </div>
       </div>
     </section>
@@ -1691,16 +1719,36 @@ applyThemeUI();
 // ── Approach timeline: line fills as the row scrolls horizontally ──
 const apGrid = document.querySelector(".approach-grid");
 const apFill = document.querySelector(".approach-line-fill");
-if (apGrid && apFill && !reduceMotion) {
+const apScroller = document.querySelector(".approach-scroller");
+if (apGrid) {
   const upd = () => {
     const max = apGrid.scrollWidth - apGrid.clientWidth;
-    const p = max > 0 ? apGrid.scrollLeft / max : 0;
-    apFill.style.width = `${p * 100}%`;
+    if (apFill && !reduceMotion) {
+      const p = max > 0 ? apGrid.scrollLeft / max : 0;
+      apFill.style.width = `${p * 100}%`;
+    }
     apGrid.classList.toggle("fade-left", apGrid.scrollLeft > 4);
     apGrid.classList.toggle("at-end", max > 0 && apGrid.scrollLeft >= max - 4);
+    if (apScroller) {
+      apScroller.classList.toggle("can-prev", apGrid.scrollLeft > 4);
+      apScroller.classList.toggle("can-next", max > 0 && apGrid.scrollLeft < max - 4);
+    }
   };
   apGrid.addEventListener("scroll", upd, { passive: true });
   window.addEventListener("resize", upd, { passive: true });
+  if (apScroller) {
+    const step = () => {
+      const card = apGrid.querySelector(".approach-card");
+      const gap = parseFloat(getComputedStyle(apGrid).columnGap) || 28;
+      return card ? card.offsetWidth + gap : apGrid.clientWidth * 0.8;
+    };
+    apScroller.querySelector(".approach-arrow.prev")?.addEventListener("click", () => {
+      apGrid.scrollBy({ left: -step(), behavior: "smooth" });
+    });
+    apScroller.querySelector(".approach-arrow.next")?.addEventListener("click", () => {
+      apGrid.scrollBy({ left: step(), behavior: "smooth" });
+    });
+  }
   upd();
 }
 

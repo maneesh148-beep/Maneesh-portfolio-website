@@ -177,16 +177,36 @@ applyThemeUI();
 // ── Approach timeline: line fills as the row scrolls horizontally ──
 const apGrid = document.querySelector(".approach-grid");
 const apFill = document.querySelector(".approach-line-fill");
-if (apGrid && apFill && !reduceMotion) {
+const apScroller = document.querySelector(".approach-scroller");
+if (apGrid) {
   const upd = () => {
     const max = apGrid.scrollWidth - apGrid.clientWidth;
-    const p = max > 0 ? apGrid.scrollLeft / max : 0;
-    apFill.style.width = `${p * 100}%`;
+    if (apFill && !reduceMotion) {
+      const p = max > 0 ? apGrid.scrollLeft / max : 0;
+      apFill.style.width = `${p * 100}%`;
+    }
     apGrid.classList.toggle("fade-left", apGrid.scrollLeft > 4);
     apGrid.classList.toggle("at-end", max > 0 && apGrid.scrollLeft >= max - 4);
+    if (apScroller) {
+      apScroller.classList.toggle("can-prev", apGrid.scrollLeft > 4);
+      apScroller.classList.toggle("can-next", max > 0 && apGrid.scrollLeft < max - 4);
+    }
   };
   apGrid.addEventListener("scroll", upd, { passive: true });
   window.addEventListener("resize", upd, { passive: true });
+  if (apScroller) {
+    const step = () => {
+      const card = apGrid.querySelector(".approach-card");
+      const gap = parseFloat(getComputedStyle(apGrid).columnGap) || 28;
+      return card ? card.offsetWidth + gap : apGrid.clientWidth * 0.8;
+    };
+    apScroller.querySelector(".approach-arrow.prev")?.addEventListener("click", () => {
+      apGrid.scrollBy({ left: -step(), behavior: "smooth" });
+    });
+    apScroller.querySelector(".approach-arrow.next")?.addEventListener("click", () => {
+      apGrid.scrollBy({ left: step(), behavior: "smooth" });
+    });
+  }
   upd();
 }
 

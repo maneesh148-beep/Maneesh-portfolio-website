@@ -22,19 +22,26 @@ export default function Approach() {
   const [headRef, headShown] = useReveal();
   const gridRef = useRef(null);
   const fillRef = useRef(null);
+  const scrollerRef = useRef(null);
 
-  // Line fills as the row scrolls horizontally; fade edges by position.
+  // Line fills as the row scrolls horizontally; fade edges and toggle arrows by position.
   useEffect(() => {
-    if (reduceMotion) return;
     const grid = gridRef.current;
     const fill = fillRef.current;
-    if (!grid || !fill) return;
+    const scroller = scrollerRef.current;
+    if (!grid) return;
     const upd = () => {
       const max = grid.scrollWidth - grid.clientWidth;
-      const p = max > 0 ? grid.scrollLeft / max : 0;
-      fill.style.width = `${p * 100}%`;
+      if (fill && !reduceMotion) {
+        const p = max > 0 ? grid.scrollLeft / max : 0;
+        fill.style.width = `${p * 100}%`;
+      }
       grid.classList.toggle("fade-left", grid.scrollLeft > 4);
       grid.classList.toggle("at-end", max > 0 && grid.scrollLeft >= max - 4);
+      if (scroller) {
+        scroller.classList.toggle("can-prev", grid.scrollLeft > 4);
+        scroller.classList.toggle("can-next", max > 0 && grid.scrollLeft < max - 4);
+      }
     };
     grid.addEventListener("scroll", upd, { passive: true });
     window.addEventListener("resize", upd, { passive: true });
@@ -44,6 +51,15 @@ export default function Approach() {
       window.removeEventListener("resize", upd);
     };
   }, []);
+
+  const scrollStep = (dir) => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const card = grid.querySelector(".approach-card");
+    const gap = parseFloat(getComputedStyle(grid).columnGap) || 28;
+    const step = card ? card.offsetWidth + gap : grid.clientWidth * 0.8;
+    grid.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
 
   return (
     <section className="section" id="approach">
@@ -58,10 +74,32 @@ export default function Approach() {
         <div className="approach-line" aria-hidden="true">
           <span className="approach-line-fill" ref={fillRef} />
         </div>
-        <div className="approach-grid" ref={gridRef}>
-          {APPROACH.map((step) => (
-            <Step key={step.num} step={step} />
-          ))}
+        <div className="approach-scroller" ref={scrollerRef}>
+          <div className="approach-grid" ref={gridRef}>
+            {APPROACH.map((step) => (
+              <Step key={step.num} step={step} />
+            ))}
+          </div>
+          <button
+            className="approach-arrow prev"
+            type="button"
+            aria-label="Scroll to previous steps"
+            onClick={() => scrollStep(-1)}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            className="approach-arrow next"
+            type="button"
+            aria-label="Scroll to more steps"
+            onClick={() => scrollStep(1)}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
