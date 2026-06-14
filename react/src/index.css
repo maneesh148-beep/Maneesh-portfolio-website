@@ -1030,3 +1030,7 @@ html[data-theme="light"] .hero-spotlight {
 .xp-item.is-open .xp-toggle::before { background: var(--accent-text); }
 
 
+
+/* ── Footer left: resume button above email ── */
+.contact-left { display: flex; flex-direction: column; align-items: flex-start; }
+.contact-resume { margin: 4px 0 18px; }

@@ -1,7 +1,10 @@
-import { EMAIL, NAV_LINKS, SOCIALS } from "../data";
+import { EMAIL, SOCIALS } from "../data";
 import { useReveal } from "../hooks/useReveal";
 
-const SITE_LINKS = [{ href: "#top", label: "Home" }, ...NAV_LINKS];
+const SITE_LINKS = [
+  { href: "#work", label: "Work" },
+  { href: "#about", label: "About" },
+];
 
 export default function Contact() {
   const [ref, shown] = useReveal();
@@ -15,6 +18,13 @@ export default function Contact() {
             <br />
             together.
           </h2>
+          <a
+            href="Maneesh-Jaiswal-Resume.pdf"
+            download="Maneesh-Jaiswal-Resume.pdf"
+            className="btn btn-ghost contact-resume magnetic"
+          >
+            Download Resume <span className="btn-icon" aria-hidden="true">↓</span>
+          </a>
           <a href={`mailto:${EMAIL}`} className="contact-email">
             {EMAIL} <span aria-hidden="true">↗</span>
           </a>
