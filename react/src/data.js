@@ -59,7 +59,7 @@ export const APPROACH = [
 ];
 
 export const HERO = {
-  badge: "Hey, I'm Maneesh 👋 · Lead Product Designer (L6) @ Target",
+  badge: "Hey, I'm Maneesh 👋 · Leading design at Target Corp.",
   titleLines: ["Turning complex", "business challenges into"],
   titleAccent: "products people love",
   sub: "I combine product strategy, user empathy, systems thinking, and design leadership to build scalable experiences that drive customer and business outcomes. Currently shaping Guest Experience at Target. Previously at Meesho, BlackBuck, PayU, and Ola.",
